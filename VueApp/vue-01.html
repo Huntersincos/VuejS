@@ -1,0 +1,94 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue-01</title>
+    <!-- <script src="https://unpkg.com/vue"></script> -->
+    <script src="vue.js"></script>
+    <style type="text/css">
+       #pane{
+           width: 200px;
+           height: 200px;
+       }
+    </style>
+</head>
+<body>
+   <!-- div  script 顺序不能颠倒 -->
+    <div id= "app-01" >
+        {{ message }}
+    </div>
+
+    <!-- vue条件渲染 -->
+
+    <div id = "conditionxuaran">
+        <h1> 用户:  {{username}} </h1>
+        <h3 v-if = "isVip">  用户类型:Vip</h3>
+        <!--if- else 之间不能有任何语句-->
+        <h4 v-else>普通用户</h4>
+
+        <hr>
+
+        <h1> 用户登录的时间</h1>
+        <h3 v-if = "age>=18">登录24小时</h3>
+        <h3 v-else-if = "age>12">登录3小时</h3>
+        <h3 v-else>不允许登录</h3>
+
+ <!-- v-show display :none 和 v - if 区别 
+    v-show:内容还在 隐藏意思
+    v - if 内部完全不现实
+    
+    -->
+        <div v-show = "isShow" id = "pane">
+            你好 hunter
+        </div>
+        <button @click="showPanle">切换显示内容</button>
+    </div>
+
+
+  
+
+   
+
+    <script>
+
+        /**
+        vue 2.0 是MVVM  数据的双向绑定
+        Vue 是实例对象
+        {{ message }} 这种写法影响性能  vue 脚手架 优化这个性能
+        */
+        var vueApp =  new Vue (
+          {
+                el: '#app-01',
+                data:{
+                    message:'hello Vue'
+                  }
+            }
+        )
+
+
+        var app  = new Vue(
+            {
+                el:'#conditionxuaran',
+                data:{
+                    username:"hunter" ,
+                    isVip:true,
+                    age:18,
+                    isShow:true
+
+                },
+
+                methods:{
+                   showPanle:function(e){
+                    console.log(e)
+                     app.isShow = !app.isShow;
+                   }
+                }
+              
+            }
+        )
+
+    console.log(app)
+    </script>
+    
+</body>
+</html>
