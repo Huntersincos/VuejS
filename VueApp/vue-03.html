@@ -1,0 +1,78 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue 列表渲染</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+    <div id = "app">
+        <ul v-for = "item,key in author" >
+            <li>{{item}}</li>
+            <li>{{key}}</li>
+        </ul>
+
+         <h3>作家简介</h3>
+        <ul v-for = "item,key in objc_author" v-if = "key > 1"  :key = "key">
+            <h3>名字:{{item.name + key}}</h3>
+            <h4>性别:{{item.sex}}</h4>
+            <h5>代表作:{{item.productions}}</h5>  
+        </ul>
+        <button @click = "chargeContent">改变</button>
+
+        <h3>循环对象</h3>
+
+        <ul>
+            <li v-for ="item,key in objc_author[0]">{{item}}  {{key}}</li>
+            <img :src="objc_author[0].img" alt="" width="30px" height="30px">
+        </ul>
+    </div>
+
+
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                author:["莫言","鲁迅","李清照","苏轼","王维","司马迁"],
+                objc_author:[
+                    {
+                        name:"莫言",
+                        sex:"男",
+                        productions:"红高粱",
+                        img:"https://images.pexels.com/photos/1270076/pexels-photo-1270076.jpeg?cs=srgb&dl=adult-barefoot-black-and-white-1270076.jpg&fm=jpg"
+                    },
+                    {
+                        name:"鲁迅",
+                        sex:"男",
+                        productions:"狂人日记"  
+                    },
+                    {
+                        name:"李清照",
+                        sex:"女",
+                        productions:"声声慢"  
+                    },
+                    {
+                        name:"苏轼",
+                        sex:"男",
+                        productions:"水调歌头"  
+                    },
+                    {
+                        name:"司马迁",
+                        sex:"男",
+                        productions:"史记"  
+                    },
+                ]
+            },
+            methods:{
+                chargeContent:function(e){
+                   console.log(e)
+                   this.author = ["李斯"]
+                }
+            }
+
+        })
+    </script>
+    
+</body>
+</html>
