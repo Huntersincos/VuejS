@@ -1,0 +1,92 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模板方法</title>
+    <script src="vue.js"></script>
+    <style type="text/css">
+        #bangding{
+            background-color: aquamarine;
+        }
+
+        #chargebangding{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+
+     <div id = "app">
+       <!-- 值只更新一次 -->
+        <span v-once> 
+           {{msg}}
+        </span>
+ <!-- v-html 插入标签内容  容易引起xss攻击 -->
+        <p v-html = "pHtml">
+            
+        </p>
+          <!-- 动态绑定 -->
+          <p :id = "autoBindi">
+              动态绑定属性
+          </p>
+    <!-- 计算属性 -->
+        <h2> {{calcute}} </h2>
+        <h4>{{getsecalcute}}</h4>
+        <!-- 侦听属性 -->
+        <h3>{{fullName}}</h3>
+
+     </div>
+
+     <script>
+         let app  = new Vue({
+             el:"#app",
+             data:{
+              msg:"你好 vue 模板方法",
+              pHtml:"<p>你好 </p>",
+              autoBindi:"bangding",
+              frist:"你好",
+              last:"vue",
+              firstName: 'Foo',
+              lastName: 'Bar',
+              fullName: 'Foo Bar',
+              getsecalcute:"你好"
+
+             },
+             computed:{
+
+                calcute:function(){
+                    // 计算属性,具有缓存功能,优化性能 get方法 可以提供一个set方法
+                    return this.frist + this.last
+                },
+
+                getsecalcute:{
+                    get:function() {
+                        return this.frist + this.last
+                    },
+
+                    set: function (newValue) {
+                        // 修改值
+                        this.frist = "计算属性setter"; 
+                        this.last = "计算属性setter" 
+                    }
+                }
+
+             },
+            watch:{
+               // 侦听属性 val 是监听的的新的内容  慎用watch
+               firstName:function(val){
+                   
+                   this.firstName = val  + '' + this.lastName
+
+               },
+               lastName:function(val){
+
+                   this.lastName = this.firstName + '' + val
+               }
+
+            }
+         }
+        ) 
+     </script>
+</body>
+</html>

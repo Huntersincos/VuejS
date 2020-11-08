@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue 样式</title>
+    <script src="vue.js"></script>
+    <style type="text/css">
+    .page{
+        width: 200px;
+        height: 200px;
+        background-color: blue;
+        display: none;
+    }
+    
+    .active{
+       display: block;
+    }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 通过isTure对象 修改html 类 -->
+        <div class="page" :class = "{active:isTure}">
+          <!-- 另外一种写法 -->
+        <div class="page" :class = "styleObj"></div>
+<!-- 通过数组新增类 -->  
+        <div :class="styleArr"></div>
+        </div>
+    </div>
+
+    <script>
+         let app = new Vue({
+             el:"#app",
+             data:{
+                 isTure:true,
+                 styleObj:{active:true,hunterclass:false},
+                 styleArr:['class1','class2']
+
+             }
+         })
+    </script>
+</body>
+</html>
