@@ -25,6 +25,15 @@
         <div class="page" :class = "styleObj"></div>
 <!-- 通过数组新增类 -->  
         <div :class="styleArr"></div>
+
+        <!-- 计算属性绑定类 -->
+        <div :class = "classObject"></div>
+
+         <!-- style绑定 几种方式 -->
+         <div :style="{color:activeColor,fontSize:fontSize + 'px'}"></div>
+
+         <div :style= "styleObject"></div>
+
         </div>
     </div>
 
@@ -34,8 +43,25 @@
              data:{
                  isTure:true,
                  styleObj:{active:true,hunterclass:false},
-                 styleArr:['class1','class2']
+                 styleArr:['class1','class2'],
+                  active:true,
+                  error:false,
+                  activeColor:'red',
+                  fontSize:30,
+                  styleObject:{
+                      color:'red',
+                      fontSize:'13px'
+                  }
+            
 
+             },
+             computed:{
+                classObject:function(){
+                    return {
+                        active:this.active && !this.error,
+                        'new_class':!this.error
+                    }
+                }
              }
          })
     </script>

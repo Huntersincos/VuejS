@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础组件</title>
+    <script src="vue.js"></script>
+    <script>
+        
+    </script>
+</head>
+<body>
+    
+    <div id = "app">
+
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+        <button-counter></button-counter>
+
+
+        <propComponent title="wo love Vue"></propComponent>
+
+    </div>
+
+
+    <script>
+        Vue.component('button-counter',{
+            data:function(){
+                return {
+                    count:0
+                }
+            },
+            template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+        })
+
+        //prop传值
+
+        Vue.component('propComponent',{
+            props:['title'],
+            template:'<p>props = {{title}}</p>'
+        })
+
+
+
+        new Vue({
+           el:'#app'
+        })
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue点击事件</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id = "app">
+      <button v-on:click = "counter += 1">加1</button>
+      <button v-on:click = "greed">事件处理</button>
+      <button v-on:click= "say('传参')">参数</button>
+      <!-- 修饰符 -->
+      <button v-on:click.stop = "doThis">修饰符stop</button>
+      <p>点击次数{{counter}}</p>
+      <input type="text" v-on:keyup.enter = "submit">
+      <!-- exact 修饰符允许你控制由精确的系统修饰符组合触发的事件。 -->
+      <button v-on:click.ctrl.exact="onCtrlClick">A</button>
+
+    </div>
+
+    <script>
+        var  app  = new Vue(
+            {
+                el:"#app",
+                data:{
+                    counter:0,
+                    name:'vue'
+                },
+                methods:{
+                    greed:function(evnet){
+                      alert('你好' + this.name + '!')
+                      if (evnet){
+                          alert(evnet.target.tagName)
+                      }
+                    },
+                    say:function(message){
+                        alert(message)
+                    },
+                    doThis:function(){
+                        alert('修饰符stop')
+                    },
+                    submit:function(){
+                     alert('enter')
+                    },
+
+                    onCtrlClick:function(){
+                        alert('exact')
+                    }
+                }
+
+            }
+        )
+    </script>
+
+</body>
+</html>

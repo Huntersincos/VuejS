@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单绑定</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+     <h2>{{username}}</h2>
+     <!-- 双向绑定 -->
+     <input type="text" name="username" v-model="username" value="" />
+     <!-- 多行 -->
+     <textarea name="" id="" cols="" rows="" v-model="username"></textarea>
+      <!-- 复选框绑定 -->
+
+      <input v-for="item in fruits " type="checkbox" name="fruit" v-model= "checkfruits" :value="item" id="">
+      
+       <h2>{{checkfruits}}</h2>
+
+       
+    </div>
+
+    <script>
+
+        var app =  new Vue({
+           el:'#app',
+           data:{
+            username:"小明",
+            fruits:['苹果','香蕉','西瓜','葡萄'],
+            checkfruits:[]
+           }
+
+        })
+
+    </script>
+</body>
+</html>

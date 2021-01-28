@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue 事件</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>点击次数 {{count}}</h1>
+        <!-- 点击事件写表达式 -->
+        <button @click = "count+=1">点击</button>
+        <!-- 获取事件的对象 -->
+        <button @click = "clickAction">获取对象</button>
+        <ul>
+            <!-- 循环事件 -->
+            <li v-for = "item,index in starts" :data-id = "index">
+                索引值:{{index}} ===== 内容:{{item}}
+            </li>
+         <!-- 传入事件对象 $-->
+            <li v-for = "item,index in starts" @click = "clickAction(index,$evnet )" >
+                索引值:{{index}} ===== 内容:{{item}}
+            </li>
+
+        </ul>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                count:0,
+                starts:["qinqiong","hunter"]
+            },
+            methods:{
+                clickAction:function(index ,event){
+                console.log(this)
+                console.log(event)
+                 this.count++
+                }
+            }
+        })
+    </script>
+</body>
+</html>
